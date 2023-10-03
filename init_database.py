@@ -1,14 +1,16 @@
+# 用于初始化知识库
+
 from server.knowledge_base.migrate import create_tables, reset_tables, folder2db, recreate_all_vs, list_kbs_from_folder
 from configs.model_config import NLTK_DATA_PATH
 import nltk
+
 nltk.data.path = [NLTK_DATA_PATH] + nltk.data.path
 from startup import dump_server_info
 from datetime import datetime
 
-
 if __name__ == "__main__":
     import argparse
-    
+
     parser = argparse.ArgumentParser()
     parser.formatter_class = argparse.RawTextHelpFormatter
 
@@ -20,7 +22,7 @@ if __name__ == "__main__":
             use this option if you have copied document files to the content folder, but vector store has not been populated or DEFAUL_VS_TYPE/EMBEDDING_MODEL changed.
             if your vector store is ready with the configs, just skip this option to fill info to database only.
             '''
-        )
+              )
     )
     args = parser.parse_args()
 
@@ -41,4 +43,4 @@ if __name__ == "__main__":
             folder2db(kb, "fill_info_only")
 
     end_time = datetime.now()
-    print(f"总计用时： {end_time-start_time}")
+    print(f"总计用时： {end_time - start_time}")
