@@ -56,8 +56,12 @@ def knowledge_base_chat(query: str = Body(..., description="用户输入", examp
             verbose=True,
             callbacks=[callback],
             openai_api_key=llm_model_dict[model_name]["api_key"],
+            # from configs.model_config import llm_model_dict,llm_model_dict是字典dict，
+            # llm_model_dict[model_name]["api_key"]就是llm_model_dict["chatglm2-6b"]["EMPTY"]
             openai_api_base=llm_model_dict[model_name]["api_base_url"],
+            # llm_model_dict[model_name]["api_base_url"]就是llm_model_dict["chatglm2-6b"]["http://localhost:8888/v1"]
             model_name=model_name,
+            # 这里的大模型采用的是 LLM_MODEL = "chatglm2-6b" 与OpenAI没关系，见 from configs.model_config import LLM_MODEL
             openai_proxy=llm_model_dict[model_name].get("openai_proxy")
         )
         docs = search_docs(query, knowledge_base_name, top_k, score_threshold)

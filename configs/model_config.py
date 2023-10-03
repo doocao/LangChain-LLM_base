@@ -38,7 +38,7 @@ EMBEDDING_MODEL = "m3e-base"
 # Embedding 模型运行设备。设为"auto"会自动检测，也可手动设定为"cuda","mps","cpu"其中之一。
 EMBEDDING_DEVICE = "auto"
 
-llm_model_dict = {
+llm_model_dict = {  # llm_model_dict{} 是字典dict
     "chatglm-6b": {
         "local_model_path": "THUDM/chatglm-6b",
         "api_base_url": "http://localhost:8888/v1",  # "name"修改为fastchat服务中的"api_base_url"
